@@ -1,0 +1,48 @@
+---
+- name: "Initialize PostgreSQL 14 database cluster"
+  hosts: server
+  become: yes
+
+  tasks:
+
+  #  - name: "1) Initialize database cluster"
+  #    shell: /usr/pgsql-14/bin/postgresql-14-setup initdb
+  #    when: not postgres_data.stat.exists
+
+    - name: "8) Find out if PostgreSQL is initialized"
+      ansible.builtin.stat:
+        path: "/var/lib/pgsql/14/data/pg_hba.conf"
+      register: postgres_data
+
+    - name: "9) Initialize PostgreSQL"
+      shell: "postgresql-14-setup initdb"
+      when: not postgres_data.stat.exists
+
+    - name: "10) Start and enable Postgres-14 services"
+      service: "name={{ item }} state=started enabled=yes"
+      with_items:
+        - postgresql-14
+
+    - name: "11) Start PostgreSQL service"
+      service:
+        name: postgresql-14
+        state: started
+
+    # - name: "12) test Create adminDB user"
+    #   become: yes
+    #   become_user: postgres
+    #   postgresql_user:
+    #     name: (( db_user ))
+    #     db: postgres
+    #     password: (( db_password ))
+    #     priv: "ALL"
+
+    # - name: "13) Configure pg_hba.conf"
+    #   become: yes
+    #   become_user: postgres
+    #   blockinfile:
+    #     dest: "/var/lib/pgsql/14/data/pg_hba.conf"
+    #     insertafter: "# TYPE  DATABASE        USER            ADDRESS                 METHOD"
+    #     block: |
+    #       local   all             adminDB                 trust
+

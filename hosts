@@ -1,0 +1,2 @@
+[server]
+SvrLab02-Cent8	ansible_host=10.10.21.107 ansible_user=rusdi

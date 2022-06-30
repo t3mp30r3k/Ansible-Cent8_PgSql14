@@ -1,0 +1,4 @@
+---
+- import_playbook: Postgres14.yml
+- import_playbook: Postgres14-init.yml
+- import_playbook: database.yml
