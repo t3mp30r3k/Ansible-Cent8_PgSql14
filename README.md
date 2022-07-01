@@ -49,7 +49,8 @@ P(Vars)--Config-->M
 - running the playbook with this command "ansible-palybook -i host pgsql14.yml"
 
 ## Thanks
-contributor : t3mp30r3k@2022 (kangoprek.com)
+contributor : t3mp30r3k@2022 (kangoprek.com) - rusdianto
+
 
 
 
