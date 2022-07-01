@@ -42,12 +42,16 @@ K-->M(Test DB, Create DB and User+pass)
 N(Dump.sql import) --import sql-->M
 M-->O(Finish)
 P(Vars)--Config-->M
-
-
-
-
-
-
-
-
 ```
+## How to install
+
+- please edit 'hosts' file that compatible with tour server infrastructure
+- running the playbook with this command "ansible-palybook -i host pgsql14.yml"
+
+## Thanks
+contributor : t3mp30r3k@2022 (kangoprek.com)
+
+
+
+
+
